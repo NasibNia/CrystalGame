@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- <link rel="stylesheet" type="text/css" href="assets/style.css"> -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+	<div id="heading"> Crystal Collectors!</div>
+	<div id="infobox"> About this game </div>
+
+	<div> number : <span id="bigNumId"> 0 </span></div>
+	<div> wins : <span id="winId"> 0 </span> </div>
+	<div>  losses: <span id="lossId"> 0 </span> </div>
+	<div> Score: <span id="scoreId"> 0 </span> </div>
+	<button class="btn bg-danger cryst" id="cryst1" value = 	 > Crystal 1 </button>
+	<button class="btn bg-primary cryst" id="cryst2" value = "" > Crystal 2 </button>
+	<button class="btn bg-warning cryst" id="cryst3" value = "" > Crystal 3 </button>
+	<button class="btn bg-secondary cryst" id="cryst4" value = "" > Crystal 4 </button>
+	<button class="btn bg-light" id="resetId" value = "" > Reset </button>
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<!-- <script type="text/javascript" src="javascript/crystalGame.js"> </script> -->
+
+	<script type="text/javascript">
+		
+		// making sure the page is loaded before any action takes place
+		$(document).ready(function() {
+			//create a random number between 19 to 120 and assign it to bigNumber 
+			var bigNumber = getRndInt(19,120);
+			//show on the screen
+			$("#bigNumId").html(bigNumber);
+
+			//create a random number between 1 to 12 and assing each to crystal
+			//them assign the value attribute to that same number
+			var cryst1 = getRndInt(1,12);
+			$("#cryst1").attr("value", cryst1);
+
+			var cryst2 = getRndInt(1,12);
+			$("#cryst2").attr("value", cryst2);
+
+			var cryst3 = getRndInt(1,12);
+			$("#cryst3").attr("value", cryst3);
+
+			var cryst4 = getRndInt(1,12);
+			$("#cryst4").attr("value", cryst4);
+			//initialize the score
+			var score = 0;
+			var win = 0;
+			var loss = 0;
+			var isLock = false;
+
+			function reset(){
+				bigNumber = getRndInt(19,120);
+				$("#bigNumId").html(bigNumber);
+
+				cryst1 = getRndInt(1,12);
+				$("#cryst1").attr("value", cryst1);
+
+				cryst2 = getRndInt(1,12);
+				$("#cryst2").attr("value", cryst2);
+
+				cryst3 = getRndInt(1,12);
+				$("#cryst3").attr("value", cryst3);
+
+				cryst4 = getRndInt(1,12);
+				$("#cryst4").attr("value", cryst4);
+
+				score = 0;
+				$("#scoreId").html(score);
+				isLock = false;
+			}
+
+			$(".cryst").on("click",function(){
+				if (!isLock){
+
+					score += parseInt($(this).val());
+					$("#scoreId").html(score);
+					console.log(score);
+					if ( score === bigNumber){
+						win++;
+						$("#winId").html(win);
+						isLock = true;
+					}
+					if (score > bigNumber){
+						loss++;
+						$("#lossId").html(loss);
+						isLock = true;	
+					}
+				}				
+			})
+			$("#resetId").on("click",function(){
+				reset();
+			})
+
+
+			//function returns random number between min and max including both min and max
+			function getRndInt(min, max) {
+				return Math.floor(Math.random() * (max - min + 1) ) + min;
+			}
+
+		});
+	</script>
+</body>
+</html>
