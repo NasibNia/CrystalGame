@@ -19,7 +19,7 @@ Using the sweet language of javascript and the rich library of jQuery and its po
 # Images
 <!-- take a picture of the image and add it into the readme  -->
 <!-- ![image title](path or link to image) -->
-![wire frame](assets/images/crystal.JPEG)
+![wire frame](assets/images/crystal.jpeg)
 
 
 
